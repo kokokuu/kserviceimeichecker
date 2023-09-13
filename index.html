@@ -33,16 +33,21 @@
             event.preventDefault();
             const imeiInput = document.getElementById("imei");
             const resultSection = document.getElementById("result");
-            
-            // Regular expression to validate a 15-digit IMEI number
-            const imeiPattern = /^\d{15}$/;
+            const apiKey = "15d4613cb5bc779282d7c7c0b011e7c3 "; // Replace with your actual API key
+            const serviceId = "your_service_id"; // Replace with your actual service ID
             const imei = imeiInput.value;
-
-            if (imeiPattern.test(imei)) {
-                resultSection.innerHTML = `<p>IMEI ${imei} is valid.</p>`;
-            } else {
-                resultSection.innerHTML = `<p>IMEI ${imei} is not valid. It should be a 15-digit number.</p>`;
-            }
+            
+            // Make a fetch request to the API endpoint
+            fetch(`https://mifirm.net/php-api/${apiKey}/${serviceId}/${imei}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the API response data here
+                    resultSection.innerHTML = `<p>API Response: ${JSON.stringify(data)}</p>`;
+                })
+                .catch(error => {
+                    // Handle errors here
+                    resultSection.innerHTML = `<p>Error: ${error.message}</p>`;
+                });
         });
     </script>
 </body>
