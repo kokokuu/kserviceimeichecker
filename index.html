@@ -27,5 +27,23 @@
     <footer>
         <p>&copy; 2023 Your IMEI Checker</p>
     </footer>
+
+    <script>
+        document.getElementById("imeiForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const imeiInput = document.getElementById("imei");
+            const resultSection = document.getElementById("result");
+            
+            // Regular expression to validate a 15-digit IMEI number
+            const imeiPattern = /^\d{15}$/;
+            const imei = imeiInput.value;
+
+            if (imeiPattern.test(imei)) {
+                resultSection.innerHTML = `<p>IMEI ${imei} is valid.</p>`;
+            } else {
+                resultSection.innerHTML = `<p>IMEI ${imei} is not valid. It should be a 15-digit number.</p>`;
+            }
+        });
+    </script>
 </body>
 </html>
