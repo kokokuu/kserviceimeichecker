@@ -34,11 +34,11 @@
             const imeiInput = document.getElementById("imei");
             const resultSection = document.getElementById("result");
             const apiKey = "15d4613cb5bc779282d7c7c0b011e7c3 "; // Replace with your actual API key
-            const serviceId = "your_service_id"; // Replace with your actual service ID
+            
             const imei = imeiInput.value;
             
             // Make a fetch request to the API endpoint
-            fetch(`https://mifirm.net/php-api/${apiKey}/${serviceId}/${imei}`)
+            fetch(`https://mifirm.net/php-api/${apiKey}/${imei}`)
                 .then(response => response.json())
                 .then(data => {
                     // Handle the API response data here
