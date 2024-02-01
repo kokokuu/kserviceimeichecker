@@ -1,69 +1,82 @@
 <!DOCTYPE html>
-// Catch errors since some browsers throw when using the new `type` option.
-// https://bugs.webkit.org/show_bug.cgi?id=209216
-try {
-  // Create the performance observer.
-  const po = new PerformanceObserver((list) => {
-    for (const entry of list.getEntries()) {
-      // Logs all server timing data for this response
-      console.log('Server Timing', entry.serverTiming);
-    }
-  });
-  // Start listening for `navigation` entries to be dispatched.
-  po.observe({type: 'navigation', buffered: true});
-} catch (e) {
-  // Do nothing if the browser doesn't support this API.
-}
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IMEI Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlocker Info</title>
+    <!-- Add your custom CSS styles or external stylesheet links here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #555;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 5px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
+
     <header>
-        <h1>IMEI Checker</h1>
+        <h1>Unlocker Info</h1>
     </header>
 
+    <nav>
+        <a href="#section1">Section 1</a>
+        <a href="#section2">Section 2</a>
+        <!-- Add more navigation items as needed -->
+    </nav>
+
     <main>
-        <section>
-            <h2>Enter IMEI Number</h2>
-            <form id="imeiForm">
-                <label for="imei">IMEI:</label>
-                <input type="text" id="imei" name="imei" required>
-                <button type="submit">Check IMEI</button>
-            </form>
+        <section id="section1">
+            <h2>Section 1</h2>
+            <p>This is the content of Section 1.</p>
         </section>
 
-        <section id="result">
-            <!-- The result of the IMEI check will be displayed here -->
+        <section id="section2">
+            <h2>Section 2</h2>
+            <p>This is the content of Section 2.</p>
         </section>
+        <!-- Add more sections/content as needed -->
     </main>
 
     <footer>
-        <p>&copy; 2023 Your IMEI Checker</p>
+        <p>&copy; 2024 Unlocker Info. All rights reserved.</p>
     </footer>
 
-    <script>
-        document.getElementById("imeiForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const imeiInput = document.getElementById("imei");
-            const resultSection = document.getElementById("result");
-            const apiKey = "15d4613cb5bc779282d7c7c0b011e7c3 "; // Replace with your actual API key
-            
-            const imei = imeiInput.value;
-            
-            // Make a fetch request to the API endpoint
-            fetch(`https://mifirm.net/php-api/${apiKey}/${imei}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the API response data here
-                    resultSection.innerHTML = `<p>API Response: ${JSON.stringify(data)}</p>`;
-                })
-                .catch(error => {
-                    // Handle errors here
-                    resultSection.innerHTML = `<p>Error: ${error.message}</p>`;
-                });
-        });
-    </script>
 </body>
 </html>
